@@ -1,0 +1,4 @@
+#!/bin/sh -e
+#
+
+cd ../php7.4 && ./install
