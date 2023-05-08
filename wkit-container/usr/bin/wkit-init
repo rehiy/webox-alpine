@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+
+if [ -d /var/config ]; then
+    chmod +x / `grep -rl '^#!/bin' /var/config`
+    cp -a /var/config/* /etc/
+fi
+
+if [ -d /etc/local.d ]; then
+    run-parts -a start /etc/local.d
+fi
+
+if [ -d /etc/wkit.d ]; then
+    run-parts -a start /etc/wkit.d
+fi
+
+echo "wkit inited !"

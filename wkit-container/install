@@ -1,5 +1,7 @@
 #!/bin/sh -e
 #
 
+rm -rf /etc/local.d/wkit.*
+
 cp -av etc /
 cp -av usr /
