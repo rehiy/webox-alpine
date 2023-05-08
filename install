@@ -1,12 +1,18 @@
 #!/bin/sh -e
 #
 
-chmod +x `grep -rl '^#!/bin' ./`
+self=$0
+if [ -L $self ]; then
+    self=`readlink $self`
+fi
 
+sdir=`dirname $self`
+
+###########################################################
 # install apps
 
-. ./local-env
+chmod +x `grep -rl '^#!/bin' ./`
 
-for NAME in $WBX_APPS; do
-    ./$NAME/install
+for app in wkit goaccess mysql redis nginx php7; do
+    cd $sdir/$app && ./install
 done
