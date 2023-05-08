@@ -1,4 +1,4 @@
 #!/bin/sh
 #
 
-wkit goaccess start
+wkit php7 start
