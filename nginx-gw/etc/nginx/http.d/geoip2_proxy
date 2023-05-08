@@ -1,0 +1,10 @@
+##
+# Geoip2 - Proxy
+##
+
+geoip2_proxy_recursive on;
+
+# recursive all
+
+geoip2_proxy 0.0.0.0/0;
+geoip2_proxy ::/0;

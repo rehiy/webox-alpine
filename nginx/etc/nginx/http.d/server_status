@@ -2,6 +2,6 @@
 # Server - Status
 ##
 
-location /status/nginx {
+location = /status/nginx {
     stub_status on;
 }

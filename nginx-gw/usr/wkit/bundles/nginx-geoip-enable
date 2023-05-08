@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+
+# update the nginx config files
+mv /etc/nginx/http.d/geoip2 /etc/nginx/http.d/geoip2.conf
+mv /etc/nginx/http.d/geoip2_proxy /etc/nginx/http.d/geoip2_proxy.conf
+
+# create the weekly cron job
+cat <<EOF >/etc/periodic/weekly/geoip-update
+#!/bin/sh
+#
+
+wkit geoip-update
+wkit nginx reload
+EOF
+
+# make it executable
+chmod +x /etc/periodic/weekly/geoip-update
+
+# executable
+/etc/periodic/weekly/geoip-update

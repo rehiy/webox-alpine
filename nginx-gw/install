@@ -1,0 +1,13 @@
+#!/bin/sh -e
+#
+
+apk add --no-cache logrotate \
+    nginx-mod-http-echo \
+    nginx-mod-http-image-filter \
+    nginx-mod-http-geoip2 \
+    nginx-mod-stream \
+    nginx-mod-stream-geoip2
+
+# add profiles
+
+cp -av etc /
