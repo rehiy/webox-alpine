@@ -1,18 +1,17 @@
 #!/bin/sh -e
 #
 
-self=$0
-if [ -L $self ]; then
-    self=`readlink $self`
-fi
-
-sdir=`dirname $self`
+cd `dirname $0`
+export sdir=`pwd`
 
 ###########################################################
 # install apps
 
 chmod +x `grep -rl '^#!/bin' ./`
 
-for app in wkit goaccess mysql redis nginx php7; do
-    cd $sdir/$app && ./install
+for app in wkit $@; do
+    echo "install $app ..."
+    if [ -x $sdir/$app/install ]; then
+        cd $sdir/$app && ./install
+    fi
 done
