@@ -1,0 +1,35 @@
+#!/bin/sh -e
+#
+
+apk add --no-cache php5 php5-fpm \
+    php5-bcmath \
+    php5-bz2 \
+    php5-curl \
+    php5-ctype \
+    php5-dom \
+    php5-exif \
+    php5-ftp \
+    php5-gd \
+    php5-gettext \
+    php5-iconv \
+    php5-json \
+    php5-mcrypt \
+    php5-mysqli \
+    php5-openssl \
+    php5-pdo_mysql \
+    php5-pdo_sqlite \
+    php5-shmop \
+    php5-sockets \
+    php5-sqlite3 \
+    php5-xml \
+    php5-xmlreader \
+    php5-xsl \
+    php5-zip
+
+rm -rf /etc/php5/php-fpm.d
+rm -rf /var/lib/php5
+
+# add profiles
+
+cp -av etc /
+cp -av usr /
