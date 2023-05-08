@@ -14,4 +14,8 @@ if [ -d /etc/wkit.d ]; then
     run-parts -a start /etc/wkit.d
 fi
 
+if [ -x /etc/rc.local ]; then
+    /etc/rc.local
+fi
+
 echo "wkit inited !"
