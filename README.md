@@ -4,24 +4,34 @@ Re sail from alpine !
 
 Webox (`abbreviation for web-box`) is a customized LNMP server, which includes the following components: MariaDB, Nginx, PHP, Redis. And add some popular plug-ins.
 
-- mariadb 10.5.x
+## Install apps
 
-- nginx 1.19.x
+```bash
+wget https://github.com/rehiy/webox-alpine/archive/refs/heads/master.tar.gz
+tar xvf master.tar.gz && rm -f master.tar.gz
 
-  - image-filter
-
-- php 7.4.x
-
-  - redis
-
-- redis 6.2.x
-
-## You may also need to execute the following SQL statements.
-
-```sql
-DROP USER 'mysql'@'localhost';
+cd webox-alpine-master
+sh install mysql nginx nginx-php php8.1 redis
 ```
 
-# More Issues
+## Start service
 
-See https://github.com/rehiy/webox-alpine/issues for more issues.
+```bash
+wkit mysql start
+wkit redis start
+wkit php81 start
+wkit nginx start
+```
+
+## Stop service
+
+```bash
+wkit mysql stop
+wkit redis stop
+wkit php81 stop
+wkit nginx stop
+```
+
+## More Issues
+
+See <https://github.com/rehiy/webox-alpine/issues> for more issues.
