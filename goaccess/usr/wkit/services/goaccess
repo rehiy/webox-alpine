@@ -1,0 +1,70 @@
+#!/bin/sh
+#
+
+. /usr/wkit/app-rc
+. /etc/goaccess/env-vars
+
+#====================================================================#
+
+APP_NAME=goaccess
+
+APP_BIN_FILE=/usr/bin/goaccess
+APP_PID_FILE=/var/run/goaccess.pid
+
+#====================================================================#
+
+app_start() {
+
+    $APP_BIN_FILE $LOG_FILE \
+        --pid-file $APP_PID_FILE \
+        --output=$DATA_DIR/report/index.html
+
+}
+
+app_stop() {
+
+    kill -TERM `cat $APP_PID_FILE`
+
+    if [ -f $APP_PID_FILE ]; then
+        rm $APP_PID_FILE
+    fi
+
+}
+
+app_prepare() {
+
+    if [ ! -d $DATA_DIR ]; then
+        mkdir -p $DATA_DIR/report
+        mkdir -p $DATA_DIR/database
+    fi
+
+    # fix goaccess config
+
+    if grep -q DATA_DIR /etc/goaccess/goaccess.conf; then
+        sed -i "s#\$DATA_DIR#${DATA_DIR}#" /etc/goaccess/goaccess.conf
+    fi
+
+    if grep -q REPORT_URL /etc/goaccess/goaccess.conf; then
+        sed -i "s#\$REPORT_URL#${REPORT_URL}#" /etc/goaccess/goaccess.conf
+    fi
+
+    # fix nginx config
+
+    if [ ! -e $LOG_FILE ]; then
+        touch $LOG_FILE
+    fi
+
+    if grep -q access_log /etc/nginx/conf.d/http.conf; then
+        sed -i '/access_log/d' /etc/nginx/conf.d/http.conf
+        echo "access_log $LOG_FILE main;" > /etc/nginx/http.d/logger.conf
+    fi
+
+    if [ ! -e /etc/nginx/http.d/auth_basic ]; then
+        echo admin:$(echo $REPORT_PWD | openssl passwd -stdin -apr1) > /etc/nginx/http.d/auth_basic
+    fi
+
+}
+
+#====================================================================#
+
+app_do $1

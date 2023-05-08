@@ -1,9 +1,4 @@
 #!/bin/sh
 #
 
-if [ -d /var/config ]; then
-    chmod +x / `grep -rl '^#!/bin' /var/config`
-    cp -a /var/config/* /etc/
-fi
-
-wkit start
+wkit-init

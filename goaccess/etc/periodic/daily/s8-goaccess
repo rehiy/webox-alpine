@@ -8,6 +8,12 @@ kill `pidof goaccess`
 
 . /etc/goaccess/env-vars
 
+if [ ! -d $DATA_DIR/archive ]; then
+    mkdir -p $DATA_DIR/archive
+fi
+
+###
+
 dbp=$DATA_DIR/database
 out=$DATA_DIR/archive/${log##*-}
 log=`find /var/log/nginx -name "access.log-*[0-9]"`
