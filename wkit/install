@@ -1,0 +1,7 @@
+#!/bin/sh -e
+#
+
+# add profiles
+
+cp -av etc /
+cp -av usr /

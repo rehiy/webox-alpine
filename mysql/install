@@ -1,0 +1,13 @@
+#!/bin/sh -e
+#
+
+apk add --no-cache mariadb mariadb-client
+
+rm -rf /etc/my.cnf /etc/my.cnf.d
+
+ln -sf mysql/my.cnf /etc/my.cnf
+
+# add profiles
+
+cp -av etc /
+cp -av usr /

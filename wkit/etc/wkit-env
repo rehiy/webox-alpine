@@ -1,0 +1,4 @@
+# webox env vars
+#
+
+export WBX_APPS=""

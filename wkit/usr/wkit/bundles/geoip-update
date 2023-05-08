@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+
+mkdir -p /usr/share/geoip
+cd /usr/share/geoip
+
+wget https://curl.rehi.org/maxmind/city-lite.mmdb.gz
+if [ -f city-lite.mmdb.gz ]; then
+    gunzip -f city-lite.mmdb.gz
+fi

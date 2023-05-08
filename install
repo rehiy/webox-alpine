@@ -1,0 +1,12 @@
+#!/bin/sh -e
+#
+
+chmod +x `grep -rl '^#!/bin' ./`
+
+# install apps
+
+. ./local-env
+
+for NAME in $WBX_APPS; do
+    ./$NAME/install
+done

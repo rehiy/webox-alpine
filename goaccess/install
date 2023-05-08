@@ -1,0 +1,9 @@
+#!/bin/sh -e
+#
+
+apk add --no-cache openssl goaccess
+
+# add profiles
+
+cp -av etc /
+cp -av usr /

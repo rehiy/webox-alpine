@@ -24,4 +24,4 @@ DROP USER 'mysql'@'localhost';
 
 # More Issues
 
-See https://github.com/anrip/webox-alpine/issues for more issues.
+See https://github.com/rehiy/webox-alpine/issues for more issues.
