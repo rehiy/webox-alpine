@@ -8,15 +8,20 @@ geoip2 /usr/share/geoip/city-lite.mmdb {
 
     $geoip2_data_country_code country iso_code;
     $geoip2_data_country_name country names en;
+    $geoip2_data_country_name_cn country names zh-CN;
 
     $geoip2_data_province_name subdivisions 0 names en;
+    $geoip2_data_province_name_cn subdivisions 0 names zh-CN;
 
     $geoip2_data_city_name city names en;
+    $geoip2_data_city_name_cn city names zh-CN;
 
     $geoip2_data_location_latitude location latitude;
     $geoip2_data_location_longitude location longitude;
 
 }
+
+# headers
 
 proxy_set_header IP-COUNTRY-CODE $geoip2_data_country_code;
 proxy_set_header IP-COUNTRY-NAME $geoip2_data_country_name;
