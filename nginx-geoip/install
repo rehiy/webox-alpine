@@ -1,0 +1,12 @@
+#!/bin/sh -e
+#
+
+apk add --no-cache \
+    nginx-mod-http-geoip2 \
+    nginx-mod-stream-geoip2
+
+wkit geoip-update
+
+# add profiles
+
+cp -av etc /
