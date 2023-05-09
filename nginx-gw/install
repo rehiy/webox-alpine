@@ -8,6 +8,8 @@ apk add --no-cache logrotate \
     nginx-mod-stream \
     nginx-mod-stream-geoip2
 
+wkit geoip-update
+
 # add profiles
 
 cp -av etc /
