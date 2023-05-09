@@ -1,4 +1,6 @@
 # webox env vars
 #
 
-export WBX_APPS=""
+if [ -z "$WBX_APPS" ]; then
+    export WBX_APPS=""
+fi
