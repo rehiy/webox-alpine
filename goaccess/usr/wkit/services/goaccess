@@ -38,6 +38,12 @@ app_prepare() {
         mkdir -p $DATA_DIR/database
     fi
 
+    # add geoip database
+
+    if [ ! -f /usr/share/geoip/city-lite.mmdb ]; then
+        geoip-update
+    fi
+
     # fix goaccess config
 
     if grep -q DATA_DIR /etc/goaccess/goaccess.conf; then
