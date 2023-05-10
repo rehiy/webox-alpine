@@ -37,6 +37,11 @@ apk add --no-cache php8 php8-fpm \
 rm -rf /etc/php8/php-fpm.d
 rm -rf /var/lib/php8
 
+# fix nginx config
+
+sed -i 's#php/#php8/#g' /etc/nginx/http.d/server_fastcgi_php
+sed -i 's#php/#php8/#g' /etc/nginx/http.d/server_status
+
 # add profiles
 
 cp -av etc /

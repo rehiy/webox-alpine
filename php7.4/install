@@ -37,6 +37,11 @@ apk add --no-cache php7 php7-fpm \
 rm -rf /etc/php7/php-fpm.d
 rm -rf /var/lib/php7
 
+# fix nginx config
+
+sed -i 's#php/#php7/#g' /etc/nginx/http.d/server_fastcgi_php
+sed -i 's#php/#php7/#g' /etc/nginx/http.d/server_status
+
 # add profiles
 
 cp -av etc /

@@ -37,6 +37,11 @@ apk add --no-cache php81 php81-fpm \
 rm -rf /etc/php81/php-fpm.d
 rm -rf /var/lib/php81
 
+# fix nginx config
+
+sed -i 's#php/#php81/#g' /etc/nginx/http.d/server_fastcgi_php
+sed -i 's#php/#php81/#g' /etc/nginx/http.d/server_status
+
 # add profiles
 
 cp -av etc /

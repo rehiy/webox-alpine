@@ -29,6 +29,11 @@ apk add --no-cache php5 php5-fpm \
 rm -rf /etc/php5/php-fpm.d
 rm -rf /var/lib/php5
 
+# fix nginx config
+
+sed -i 's#php/#php5/#g' /etc/nginx/http.d/server_fastcgi_php
+sed -i 's#php/#php5/#g' /etc/nginx/http.d/server_status
+
 # add profiles
 
 cp -av etc /

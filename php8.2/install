@@ -37,6 +37,11 @@ apk add --no-cache php82 php82-fpm \
 rm -rf /etc/php82/php-fpm.d
 rm -rf /var/lib/php82
 
+# fix nginx config
+
+sed -i 's#php/#php82/#g' /etc/nginx/http.d/server_fastcgi_php
+sed -i 's#php/#php82/#g' /etc/nginx/http.d/server_status
+
 # add profiles
 
 cp -av etc /
