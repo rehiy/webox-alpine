@@ -41,7 +41,7 @@ app_prepare() {
     # add geoip database
 
     if [ ! -f /usr/share/geoip/city-lite.mmdb ]; then
-        geoip-update
+        wkit geoip-update
     fi
 
     # fix goaccess config
@@ -56,9 +56,7 @@ app_prepare() {
 
     # fix nginx config
 
-    if [ ! -e $LOG_FILE ]; then
-        touch $LOG_FILE
-    fi
+    [ -e $LOG_FILE ] ||  touch $LOG_FILE
 
     if [ ! -e /etc/nginx/http.d/auth_basic ]; then
         echo admin:$(echo $REPORT_PWD | openssl passwd -stdin -apr1) > /etc/nginx/http.d/auth_basic
