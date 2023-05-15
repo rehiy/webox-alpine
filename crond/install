@@ -1,0 +1,10 @@
+#!/bin/sh -e
+#
+
+mkdir -p /etc/periodic/5min
+mkdir -p /etc/periodic/15min
+mkdir -p /etc/periodic/30min
+
+# add profiles
+
+cp -av etc /
