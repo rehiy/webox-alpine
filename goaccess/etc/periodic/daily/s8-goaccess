@@ -2,7 +2,7 @@
 #
 
 kill `pidof goaccess`
-/etc/local.d/s8-goaccess
+wkit goaccess start
 
 ###
 
