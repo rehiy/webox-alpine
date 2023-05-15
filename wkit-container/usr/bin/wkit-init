@@ -6,10 +6,6 @@ if [ -d /var/config ]; then
     cp -a /var/config/* /etc/
 fi
 
-if [ -d /etc/local.d ]; then
-    run-parts -a start /etc/local.d
-fi
-
 if [ -d /etc/wkit.d ]; then
     run-parts -a start /etc/wkit.d
 fi
