@@ -10,7 +10,7 @@ rm -rf /var/www/localhost
 ln -sf /var/run/nginx /var/lib/nginx/run
 ln -sf /var/tmp/nginx /var/lib/nginx/tmp
 ln -sf /var/log/nginx /var/lib/nginx/logs
-
+ln -sf /var/www/assets /var/lib/nginx/html
 ln -sf /usr/lib/nginx/modules /var/lib/nginx/modules
 
 # add profiles
