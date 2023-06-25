@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+
+if [ ! -d /tmp/webox-alpine-master ]; then
+    echo "Downloading webox-alpine ..."
+    wget -q https://github.com/rehiy/webox-alpine/archive/refs/heads/master.tar.gz
+    tar xf master.tar.gz -C /tmp && rm -f master.tar.gz
+fi
+
+cd /tmp/webox-alpine-master
+sh install $@
