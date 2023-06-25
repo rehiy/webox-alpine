@@ -14,9 +14,10 @@ fi
 
 ###
 
+log=`find /var/log/nginx -name "access.log-*[0-9]"`
+
 dbp=$DATA_DIR/database
 out=$DATA_DIR/archive/${log##*-}
-log=`find /var/log/nginx -name "access.log-*[0-9]"`
 
 goaccess $log --process-and-exit --agent-list --real-os --persist --restore --db-path=$dbp
 
