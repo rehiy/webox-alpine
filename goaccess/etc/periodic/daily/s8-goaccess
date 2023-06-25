@@ -1,8 +1,7 @@
 #!/bin/sh
 #
 
-kill `pidof goaccess`
-wkit goaccess start
+wkit goaccess restart
 
 ###
 
