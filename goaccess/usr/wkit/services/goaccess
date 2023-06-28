@@ -2,7 +2,7 @@
 #
 
 . /usr/wkit/app-rc
-. /etc/goaccess/env-vars
+. /etc/conf.d/goaccess
 
 #====================================================================#
 

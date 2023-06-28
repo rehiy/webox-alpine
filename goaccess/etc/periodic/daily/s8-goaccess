@@ -5,7 +5,7 @@ wkit goaccess restart
 
 ###
 
-. /etc/goaccess/env-vars
+. /etc/conf.d/goaccess
 
 if [ ! -d $DATA_DIR/archive ]; then
     mkdir -p $DATA_DIR/archive
