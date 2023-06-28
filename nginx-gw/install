@@ -1,7 +1,7 @@
 #!/bin/sh -e
 #
 
-apk add --no-cache logrotate \
+apk add --no-cache \
     nginx-mod-http-echo \
     nginx-mod-http-image-filter \
     nginx-mod-stream \
@@ -9,5 +9,3 @@ apk add --no-cache logrotate \
 # add profiles
 
 cp -av etc /
-
-chmod 0644 /etc/logrotate.d/*

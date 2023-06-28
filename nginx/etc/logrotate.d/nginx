@@ -8,6 +8,6 @@
     notifempty
     create 644 nginx nginx
     postrotate
-        nginx -s reload
+        wkit nginx reload
     endscript
 }

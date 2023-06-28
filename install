@@ -21,3 +21,9 @@ done
 
 # delete first space
 sed -i 's/\(WBX_APPS="\) /\1/' /etc/wkit-env
+
+###########################################################
+# fix permissions
+
+chmod 0644 /etc/logrotate.d/*
+chmod 0755 /etc/wkit.d/*
