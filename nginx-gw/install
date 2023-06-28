@@ -9,3 +9,5 @@ apk add --no-cache logrotate \
 # add profiles
 
 cp -av etc /
+
+chmod 0644 /etc/logrotate.d/*
