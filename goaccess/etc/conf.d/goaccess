@@ -1,21 +1,3 @@
-#################################################
-# Nginx Log Conversion table:
-#   $time_local         %d:%t %^
-#   $host               %v
-#   $http_host          %v
-#   $remote_addr        %h
-#   $request_time       %T
-#   $request_method     %m
-#   $request_uri        %U
-#   $server_protocol    %H
-#   $request            %r
-#   $status             %s
-#   $body_bytes_sent    %b
-#   $bytes_sent         %b
-#   $http_referer       %R
-#   $http_user_agent    %u
-#
-
 export LANG="zh_CN.UTF-8"
 
 export DATA_DIR=${DATA_DIR:-/var/lib/goaccess}
