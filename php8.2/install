@@ -2,6 +2,7 @@
 #
 
 apk add --no-cache php82 php82-fpm \
+    php82-phar \
     php82-bcmath \
     php82-bz2 \
     php82-curl \

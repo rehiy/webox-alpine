@@ -2,6 +2,7 @@
 #
 
 apk add --no-cache php81 php81-fpm \
+    php81-phar \
     php81-bcmath \
     php81-bz2 \
     php81-curl \

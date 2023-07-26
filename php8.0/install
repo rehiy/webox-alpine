@@ -2,6 +2,7 @@
 #
 
 apk add --no-cache php8 php8-fpm \
+    php8-phar \
     php8-bcmath \
     php8-bz2 \
     php8-curl \
