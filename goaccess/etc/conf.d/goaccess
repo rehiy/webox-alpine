@@ -1,7 +1,7 @@
 export LANG="zh_CN.UTF-8"
 
-export DATA_DIR=${DATA_DIR:-/var/lib/goaccess}
-export LOG_FILE=${LOG_FILE:-/var/log/nginx/access*log}
+export GOACCESS_DATA_DIR=${GOACCESS_DATA_DIR:-/var/lib/goaccess}
+export GOACCESS_LOG_FILE=${GOACCESS_LOG_FILE:-/var/log/nginx/access*log}
 
-export REPORT_PWD=${REPORT_PWD:-admin}
-export REPORT_URL=${REPORT_URL:-ws://localhost:8484}
+export GOACCESS_REPORT_URL=${GOACCESS_REPORT_URL:-ws://localhost:8484}
+export GOACCESS_REPORT_PWD=${GOACCESS_REPORT_PWD:-admin}

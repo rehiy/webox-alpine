@@ -1,0 +1,17 @@
+##
+# GoAccess - Location
+##
+
+location /report {
+
+    auth_basic "Login Authentication";
+    auth_basic_user_file http.d/goaccess_auth;
+
+    index index.htm index.html;
+    alias $GOACCESS_DATA_DIR/report/;
+
+    location /report/d {
+        proxy_pass http://127.0.0.1:8484;
+    }
+
+}

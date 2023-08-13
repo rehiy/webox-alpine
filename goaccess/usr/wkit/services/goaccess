@@ -15,9 +15,9 @@ APP_PID_FILE=/var/run/goaccess.pid
 
 app_start() {
 
-    $APP_BIN_FILE $LOG_FILE \
-        --pid-file $APP_PID_FILE \
-        --output=$DATA_DIR/report/index.html
+    $APP_BIN_FILE $GOACCESS_LOG_FILE \
+        --output=$GOACCESS_DATA_DIR/report/index.html \
+        --pid-file $APP_PID_FILE
 
 }
 
@@ -25,17 +25,15 @@ app_stop() {
 
     kill -TERM `cat $APP_PID_FILE`
 
-    if [ -f $APP_PID_FILE ]; then
-        rm $APP_PID_FILE
-    fi
+    [ -f $APP_PID_FILE ] &&  rm $APP_PID_FILE
 
 }
 
 app_prepare() {
 
-    if [ ! -d $DATA_DIR ]; then
-        mkdir -p $DATA_DIR/report
-        mkdir -p $DATA_DIR/database
+    if [ ! -d $GOACCESS_DATA_DIR ]; then
+        mkdir -p $GOACCESS_DATA_DIR/report
+        mkdir -p $GOACCESS_DATA_DIR/database
     fi
 
     # add geoip database
@@ -46,18 +44,22 @@ app_prepare() {
 
     # fix goaccess config
 
-    if grep -q DATA_DIR /etc/goaccess/goaccess.conf; then
-        sed -i "s#\$DATA_DIR#${DATA_DIR}#" /etc/goaccess/goaccess.conf
+    if grep -q GOACCESS_DATA_DIR /etc/goaccess/goaccess.conf; then
+        sed -i "s#\$GOACCESS_DATA_DIR#${GOACCESS_DATA_DIR}#" /etc/goaccess/goaccess.conf
     fi
 
-    if grep -q REPORT_URL /etc/goaccess/goaccess.conf; then
-        sed -i "s#\$REPORT_URL#${REPORT_URL}#" /etc/goaccess/goaccess.conf
+    if grep -q GOACCESS_REPORT_URL /etc/goaccess/goaccess.conf; then
+        sed -i "s#\$GOACCESS_REPORT_URL#${GOACCESS_REPORT_URL}#" /etc/goaccess/goaccess.conf
     fi
 
-    # fix nginx config
+    # fix nginx proxy config
 
-    if [ ! -e /etc/nginx/http.d/auth_basic ]; then
-        echo admin:$(echo $REPORT_PWD | openssl passwd -stdin -apr1) > /etc/nginx/http.d/auth_basic
+    if [ ! -e /etc/nginx/http.d/goaccess_auth ]; then
+        echo report:$(echo $GOACCESS_REPORT_PWD | openssl passwd -stdin -apr1) >/etc/nginx/http.d/goaccess_auth
+    fi
+
+    if grep -q GOACCESS_DATA_DIR /etc/nginx/http.d/server_goaccess; then
+        sed -i "s#\$GOACCESS_DATA_DIR#${GOACCESS_DATA_DIR}#" /etc/nginx/http.d/server_goaccess
     fi
 
 }

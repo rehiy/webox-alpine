@@ -7,16 +7,16 @@ wkit goaccess restart
 
 . /etc/conf.d/goaccess
 
-if [ ! -d $DATA_DIR/archive ]; then
-    mkdir -p $DATA_DIR/archive
+if [ ! -d $GOACCESS_DATA_DIR/archive ]; then
+    mkdir -p $GOACCESS_DATA_DIR/archive
 fi
 
 ###
 
 log=`find /var/log/nginx -name "access.log-*[0-9]"`
 
-dbp=$DATA_DIR/database
-out=$DATA_DIR/archive/${log##*-}
+dbp=$GOACCESS_DATA_DIR/database
+out=$GOACCESS_DATA_DIR/archive/${log##*-}
 
 goaccess $log --process-and-exit --agent-list --real-os --persist --restore --db-path=$dbp
 
