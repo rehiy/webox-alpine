@@ -3,22 +3,17 @@
 
 wkit goaccess restart
 
-###
+### persist ###
 
 . /etc/conf.d/goaccess
 
-if [ ! -d $GOACCESS_DATA_DIR/archive ]; then
-    mkdir -p $GOACCESS_DATA_DIR/archive
-fi
-
-###
-
 logs=`find /var/log/nginx -name "access.log-*[0-9]"`
+goaccess $logs --process-and-exit --persist --restore
 
-db_path=$GOACCESS_DATA_DIR/database
-archive=$GOACCESS_DATA_DIR/archive/${logs##*-}
+### archive ###
 
-goaccess $logs --process-and-exit --persist --restore --db-path=$db_path
+[ -d $GOACCESS_DATA_DIR/archive ] || mkdir -p $GOACCESS_DATA_DIR/archive
 
-goaccess --output $archive.html --restore --db-path=$db_path
-goaccess --output $archive.json --restore --db-path=$db_path
+dist=$GOACCESS_DATA_DIR/archive/${logs##*-}
+goaccess --output $dist.html --restore
+goaccess --output $dist.json --restore
