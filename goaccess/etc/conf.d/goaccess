@@ -4,4 +4,4 @@ export GOACCESS_DATA_DIR=${GOACCESS_DATA_DIR:-/var/lib/goaccess}
 export GOACCESS_LOG_FILE=${GOACCESS_LOG_FILE:-/var/log/nginx/access*log}
 
 export GOACCESS_REPORT_URL=${GOACCESS_REPORT_URL:-ws://localhost:8484}
-export GOACCESS_REPORT_PWD=${GOACCESS_REPORT_PWD:-admin}
+export GOACCESS_REPORT_PWD=${GOACCESS_REPORT_PWD:-password}
