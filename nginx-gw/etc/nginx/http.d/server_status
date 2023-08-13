@@ -1,0 +1,12 @@
+##
+# Server - Status
+##
+
+location = /status/nginx {
+    stub_status on;
+}
+
+location /status/vts {
+    vhost_traffic_status_display;
+    vhost_traffic_status_display_format html;
+}

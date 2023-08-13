@@ -4,7 +4,8 @@
 apk add --no-cache \
     nginx-mod-http-echo \
     nginx-mod-http-image-filter \
-    nginx-mod-stream \
+    nginx-mod-http-vts \
+    nginx-mod-stream
 
 # add profiles
 
