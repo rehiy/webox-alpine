@@ -15,9 +15,8 @@ APP_PID_FILE=/var/run/goaccess.pid
 
 app_start() {
 
-    $APP_BIN_FILE $GOACCESS_LOG_FILE \
-        --output=$GOACCESS_DATA_DIR/report/index.html \
-        --pid-file $APP_PID_FILE
+    $APP_BIN_FILE $GOACCESS_LOG_FILE --daemonize --real-time-html \
+        --pid-file $APP_PID_FILE --output $GOACCESS_DATA_DIR/report/index.html
 
 }
 
@@ -31,11 +30,6 @@ app_stop() {
 
 app_prepare() {
 
-    if [ ! -d $GOACCESS_DATA_DIR ]; then
-        mkdir -p $GOACCESS_DATA_DIR/report
-        mkdir -p $GOACCESS_DATA_DIR/database
-    fi
-
     # add geoip database
 
     if [ ! -f /usr/share/geoip/city-lite.mmdb ]; then
@@ -44,10 +38,13 @@ app_prepare() {
 
     # fix goaccess config
 
+    if [ ! -d $GOACCESS_DATA_DIR ]; then
+        mkdir -p $GOACCESS_DATA_DIR/report $GOACCESS_DATA_DIR/database
+    fi
+
     if grep -q GOACCESS_DATA_DIR /etc/goaccess/goaccess.conf; then
         sed -i "s#\$GOACCESS_DATA_DIR#${GOACCESS_DATA_DIR}#" /etc/goaccess/goaccess.conf
     fi
-
     if grep -q GOACCESS_REPORT_URL /etc/goaccess/goaccess.conf; then
         sed -i "s#\$GOACCESS_REPORT_URL#${GOACCESS_REPORT_URL}#" /etc/goaccess/goaccess.conf
     fi

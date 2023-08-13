@@ -44,3 +44,22 @@ EOF
 
 wkit nginx reload
 ```
+
+## Nginx 日志对照表
+
+```text
+$time_local         %d:%t %^
+$host               %v
+$http_host          %v
+$remote_addr        %h
+$request_time       %T
+$request_method     %m
+$request_uri        %U
+$server_protocol    %H
+$request            %r
+$status             %s
+$body_bytes_sent    %b
+$bytes_sent         %b
+$http_referer       %R
+$http_user_agent    %u
+```

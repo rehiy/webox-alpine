@@ -13,12 +13,12 @@ fi
 
 ###
 
-log=`find /var/log/nginx -name "access.log-*[0-9]"`
+logs=`find /var/log/nginx -name "access.log-*[0-9]"`
 
-dbp=$GOACCESS_DATA_DIR/database
-out=$GOACCESS_DATA_DIR/archive/${log##*-}
+db_path=$GOACCESS_DATA_DIR/database
+archive=$GOACCESS_DATA_DIR/archive/${logs##*-}
 
-goaccess $log --process-and-exit --agent-list --real-os --persist --restore --db-path=$dbp
+goaccess $logs --process-and-exit --persist --restore --db-path=$db_path
 
-goaccess -o $out.json --agent-list --real-os --restore --db-path=$dbp
-goaccess -o $out.html --agent-list --real-os --restore --db-path=$dbp
+goaccess --output $archive.html --restore --db-path=$db_path
+goaccess --output $archive.json --restore --db-path=$db_path
