@@ -38,6 +38,16 @@ apk add --no-cache php8 php8-fpm \
 rm -rf /etc/php8/php-fpm.d
 rm -rf /var/lib/php8
 
+# fix php cli
+
+if [ ! -x /usr/bin/php ]; then
+    ln -s php82 /usr/bin/php
+fi
+
+if [ ! -x /usr/bin/phar ]; then
+    ln -s phar.phar82 /usr/bin/phar
+fi
+
 # fix nginx config
 
 sed -i 's#php/#php8/#g' /etc/nginx/http.d/server_fastcgi_php
