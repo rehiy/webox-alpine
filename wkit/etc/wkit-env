@@ -2,5 +2,5 @@
 #
 
 if [ -z "$WBX_APPS" ]; then
-    export WBX_APPS=""
+    export WBX_APPS=`ls /usr/wkit/services/`
 fi

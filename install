@@ -14,13 +14,7 @@ for app in wkit $@; do
     if [ -x $sdir/$app/install ]; then
         cd $sdir/$app && ./install
     fi
-    if [ -x /usr/wkit/services/$app ]; then
-        sed -i 's/\(WBX_APPS=".*\)"/\1 '$app'"/' /etc/wkit-env
-    fi
 done
-
-# delete first space
-sed -i 's/\(WBX_APPS="\) /\1/' /etc/wkit-env
 
 ###########################################################
 # fix permissions
