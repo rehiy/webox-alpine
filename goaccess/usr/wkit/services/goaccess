@@ -15,6 +15,10 @@ APP_PID_FILE=/var/run/goaccess.pid
 
 app_start() {
 
+    if [ ! -d $GOACCESS_DATA_DIR ]; then
+        mkdir -p $GOACCESS_DATA_DIR/report $GOACCESS_DATA_DIR/database
+    fi
+
     $APP_BIN_FILE $GOACCESS_LOG_FILE --daemonize --real-time-html \
         --pid-file $APP_PID_FILE --output $GOACCESS_DATA_DIR/report/index.html
 
@@ -37,10 +41,6 @@ app_prepare() {
     fi
 
     # fix goaccess config
-
-    if [ ! -d $GOACCESS_DATA_DIR ]; then
-        mkdir -p $GOACCESS_DATA_DIR/report $GOACCESS_DATA_DIR/database
-    fi
 
     if grep -q GOACCESS_DATA_DIR /etc/goaccess/goaccess.conf; then
         sed -i "s#\$GOACCESS_DATA_DIR#${GOACCESS_DATA_DIR}#" /etc/goaccess/goaccess.conf
