@@ -15,7 +15,7 @@ APP_PID_FILE=/var/run/goaccess.pid
 
 app_start() {
 
-    if [ ! -d $GOACCESS_DATA_DIR ]; then
+    if [ ! -d $GOACCESS_DATA_DIR/report ]; then
         mkdir -p $GOACCESS_DATA_DIR/report $GOACCESS_DATA_DIR/database
     fi
 
