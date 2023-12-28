@@ -1,0 +1,59 @@
+#!/bin/sh -e
+#
+
+apk add --no-cache php83 php83-fpm \
+    php83-phar \
+    php83-bcmath \
+    php83-bz2 \
+    php83-curl \
+    php83-ctype \
+    php83-dom \
+    php83-exif \
+    php83-fileinfo \
+    php83-ftp \
+    php83-gd \
+    php83-gettext \
+    php83-iconv \
+    php83-json \
+    php83-mbstring \
+    php83-mysqli \
+    php83-mysqlnd \
+    php83-opcache \
+    php83-openssl \
+    php83-pecl-redis \
+    php83-pdo_mysql \
+    php83-pdo_sqlite \
+    php83-session \
+    php83-shmop \
+    php83-simplexml \
+    php83-sockets \
+    php83-sqlite3 \
+    php83-tokenizer \
+    php83-xml \
+    php83-xmlreader \
+    php83-xmlwriter \
+    php83-xsl \
+    php83-zip
+
+rm -rf /etc/php83/php-fpm.d
+rm -rf /var/lib/php83
+
+# fix php cli
+
+if [ ! -x /usr/bin/php ]; then
+    ln -s php83 /usr/bin/php
+fi
+
+if [ ! -x /usr/bin/phar ]; then
+    ln -s phar.phar83 /usr/bin/phar
+fi
+
+# fix nginx config
+
+sed -i 's#php/#php83/#g' /etc/nginx/http.d/server_fastcgi_php
+sed -i 's#php/#php83/#g' /etc/nginx/http.d/server_status
+
+# add profiles
+
+cp -av etc /
+cp -av usr /

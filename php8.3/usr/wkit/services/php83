@@ -1,0 +1,42 @@
+#!/bin/sh
+#
+
+. /usr/wkit/app-rc
+
+#====================================================================#
+
+APP_NAME=php83
+
+APP_USER=daemon
+APP_GROUP=daemon
+
+APP_BIN_FILE=/usr/sbin/php-fpm83
+APP_PID_FILE=/var/run/php83/fpm.pid
+
+#====================================================================#
+
+app_reload() {
+
+    kill -USR2 `cat $APP_PID_FILE`
+
+}
+
+app_prepare() {
+
+    for POOL in `ls /etc/php83/php-fpm.d/`; do
+        POOL=${POOL%.*}
+        mkdir -p /var/www/${POOL}
+        mkdir -p /var/log/php83/${POOL}
+        mkdir -p /var/tmp/php83/${POOL}/upload
+        mkdir -p /var/tmp/php83/${POOL}/session
+    done
+
+    app_ownmod /var/www &
+
+    app_varfix log run tmp
+
+}
+
+#====================================================================#
+
+app_do $1
