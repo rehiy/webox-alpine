@@ -27,7 +27,7 @@ server {
 
     listen 80;
 
-    listen 443 ssl http2;
+    listen 443 ssl;
     ssl_certificate certs/default.cer;
     ssl_certificate_key certs/default.key;
 
