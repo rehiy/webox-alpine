@@ -41,11 +41,11 @@ rm -rf /var/lib/php8
 # fix php cli
 
 if [ ! -e /usr/bin/php ]; then
-    ln -s php82 /usr/bin/php
+    ln -sf php82 /usr/bin/php
 fi
 
 if [ ! -e /usr/bin/phar ]; then
-    ln -s phar.phar82 /usr/bin/phar
+    ln -sf phar.phar82 /usr/bin/phar
 fi
 
 # fix nginx config
