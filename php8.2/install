@@ -40,11 +40,11 @@ rm -rf /var/lib/php82
 
 # fix php cli
 
-if [ ! -x /usr/bin/php ]; then
+if [ ! -e /usr/bin/php ]; then
     ln -s php82 /usr/bin/php
 fi
 
-if [ ! -x /usr/bin/phar ]; then
+if [ ! -e /usr/bin/phar ]; then
     ln -s phar.phar82 /usr/bin/phar
 fi
 
