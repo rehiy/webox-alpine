@@ -10,10 +10,11 @@ export sdir=`pwd`
 chmod +x `grep -rl '^#!/bin' ./`
 
 for app in wkit $@; do
-    echo "install $app ..."
+    echo "> install app $app ..."
     if [ -x $sdir/$app/install ]; then
         cd $sdir/$app && ./install
     fi
+    echo "> install app $app done"
 done
 
 ###########################################################
