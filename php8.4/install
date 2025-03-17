@@ -1,0 +1,62 @@
+#!/bin/sh -e
+#
+
+apk add --no-cache php84 php84-fpm \
+    php84-phar \
+    php84-bcmath \
+    php84-bz2 \
+    php84-curl \
+    php84-ctype \
+    php84-dom \
+    php84-exif \
+    php84-fileinfo \
+    php84-ftp \
+    php84-gd \
+    php84-gettext \
+    php84-iconv \
+    php84-json \
+    php84-mbstring \
+    php84-mysqli \
+    php84-mysqlnd \
+    php84-opcache \
+    php84-openssl \
+    php84-pecl-redis \
+    php84-pdo_mysql \
+    php84-pdo_sqlite \
+    php84-session \
+    php84-shmop \
+    php84-simplexml \
+    php84-sockets \
+    php84-sqlite3 \
+    php84-tokenizer \
+    php84-xml \
+    php84-xmlreader \
+    php84-xmlwriter \
+    php84-xsl \
+    php84-zip
+
+rm -rf /etc/php84/php-fpm.d
+rm -rf /var/lib/php84
+
+# fix php cli
+
+if [ ! -e /usr/bin/php ]; then
+    ln -sf php84 /usr/bin/php
+fi
+
+if [ ! -e /usr/bin/phar ]; then
+    ln -sf phar83.phar /usr/bin/phar
+fi
+if [ ! -e /usr/bin/phar.phar ]; then
+    ln -sf phar83.phar /usr/bin/phar.phar
+fi
+
+# fix nginx config
+
+sed -i 's#php/#php84/#g' /etc/nginx/http.d/server_fastcgi_php
+sed -i 's#php/#php84/#g' /etc/nginx/http.d/server_status
+
+# add profiles
+
+cp -av etc /
+cp -av usr /
