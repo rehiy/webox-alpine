@@ -10,7 +10,7 @@ APP_NAME=php84
 APP_USER=daemon
 APP_GROUP=daemon
 
-APP_BIN_FILE=/usr/sbin/php-fpm83
+APP_BIN_FILE=/usr/sbin/php-fpm84
 APP_PID_FILE=/var/run/php84/fpm.pid
 
 #====================================================================#
