@@ -1,7 +1,9 @@
 #!/bin/sh
 #
 
-if [ `wget -qO- http://ipip.rehi.org/country_code` == "CN" ]; then
+country_code=`wget -qO- http://ipip.rehi.org/country_code`
+
+if [ "$country_code" == "CN" ]; then
     if ! grep -qE "ustc" /etc/apk/repositories; then
         sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
     fi
