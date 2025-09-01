@@ -1,6 +1,13 @@
 #!/bin/sh
 #
 
+if mount | grep -q "city-lite.mmdb"; then
+    echo "skip: city-lite.mmdb already mounted"
+    exit 0
+fi
+
+## update geoip database
+
 mkdir -p /usr/share/geoip
 cd /usr/share/geoip
 
