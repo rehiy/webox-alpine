@@ -3,7 +3,7 @@
 
 if [ -d /var/config ]; then
     chmod +x / `grep -rl '^#!/bin' /var/config`
-    cp -a /var/config/* /etc/
+    cp -a /var/config/. /etc/
 fi
 
 if [ -f /usr/wkit/bundles/$1 ]; then
