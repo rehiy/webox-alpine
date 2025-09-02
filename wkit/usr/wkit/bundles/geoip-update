@@ -11,6 +11,11 @@ fi
 mkdir -p /usr/share/geoip
 cd /usr/share/geoip
 
+wget https://wget.rehi.org/maxmind/asn-lite.mmdb.gz
+if [ -f asn-lite.mmdb.gz ]; then
+    gunzip -f asn-lite.mmdb.gz
+fi
+
 wget https://wget.rehi.org/maxmind/city-lite.mmdb.gz
 if [ -f city-lite.mmdb.gz ]; then
     gunzip -f city-lite.mmdb.gz
