@@ -1,4 +1,4 @@
-# Nginx Gateway
+# Nginx Proxy
 
 ## 启用图片裁切功能
 
