@@ -22,7 +22,9 @@ apk add --no-cache php81 php81-fpm \
     php81-openssl \
     php81-pecl-redis \
     php81-pdo_mysql \
+    php81-pdo_pgsql \
     php81-pdo_sqlite \
+    php81-pgsql \
     php81-session \
     php81-shmop \
     php81-simplexml \

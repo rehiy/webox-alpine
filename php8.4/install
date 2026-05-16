@@ -22,7 +22,9 @@ apk add --no-cache php84 php84-fpm \
     php84-openssl \
     php84-pecl-redis \
     php84-pdo_mysql \
+    php84-pdo_pgsql \
     php84-pdo_sqlite \
+    php84-pgsql \
     php84-session \
     php84-shmop \
     php84-simplexml \

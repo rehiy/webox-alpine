@@ -22,7 +22,9 @@ apk add --no-cache php82 php82-fpm \
     php82-openssl \
     php82-pecl-redis \
     php82-pdo_mysql \
+    php82-pdo_pgsql \
     php82-pdo_sqlite \
+    php82-pgsql \
     php82-session \
     php82-shmop \
     php82-simplexml \
