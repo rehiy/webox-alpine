@@ -1,0 +1,39 @@
+name: Validate components
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        alpine: ['3.24', edge]
+        profile: [slim, nginx, php84, php85, full]
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Install and test services
+        env:
+          ALPINE_VERSION: ${{ matrix.alpine }}
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          docker run --rm -v "$PWD:/source:ro" -e PROFILE "alpine:$ALPINE_VERSION" sh -ec '
+            cp -a /source /tmp/webox
+            cd /tmp/webox
+            sh tests/install.sh
+            case "$PROFILE" in
+              slim) modules="crond" ;;
+              nginx) modules="crond nginx nginx-proxy" ;;
+              php84) modules="crond nginx nginx-php php8.4" ;;
+              php85) modules="crond nginx nginx-php php8.5" ;;
+              full) modules="crond mysql nginx nginx-proxy nginx-php php8.5 redis" ;;
+            esac
+            sh install wkit-container $modules
+            sh tests/smoke.sh "$PROFILE"
+          '
