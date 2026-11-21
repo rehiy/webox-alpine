@@ -1,24 +1,50 @@
 #!/bin/sh -e
 #
 
-cd `dirname $0`
-export sdir=`pwd`
+set -e
+
+cd "$(dirname "$0")"
+export sdir="$(pwd)"
 
 ###########################################################
 # install apps
 
-chmod +x `grep -rl '^#!/bin' ./`
+find . -type f -exec sh -c '
+    for file do
+        IFS= read -r first_line < "$file" || :
+        case "$first_line" in
+            "#!/bin/"*) chmod +x "$file" ;;
+        esac
+    done
+' sh {} +
 
-for app in wkit $@; do
-    echo "> install app $app ..."
-    if [ -x $sdir/$app/install ]; then
-        cd $sdir/$app && ./install
+for app in wkit "$@"; do
+    case "$app" in
+        ''|*[!a-zA-Z0-9.-]*|.*)
+            echo "> invalid app: $app" >&2
+            exit 1
+            ;;
+    esac
+    if [ ! -x "$sdir/$app/install" ]; then
+        echo "> unknown app: $app" >&2
+        exit 1
     fi
+    echo "> install app $app ..."
+    cd "$sdir/$app"
+    ./install
     echo "> install app $app done"
 done
 
 ###########################################################
 # fix permissions
 
-chmod 0644 /etc/logrotate.d/*
-chmod 0755 /etc/wkit.d/*
+for file in /etc/logrotate.d/*; do
+    if [ -f "$file" ]; then
+        chmod 0644 "$file"
+    fi
+done
+for file in /etc/wkit.d/*; do
+    if [ -f "$file" ]; then
+        chmod 0755 "$file"
+    fi
+done

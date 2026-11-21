@@ -25,8 +25,8 @@
 wget https://github.com/rehiy/webox-alpine/archive/refs/heads/master.tar.gz
 tar xvf master.tar.gz && rm -f master.tar.gz
 
-cd webox-alpine
-sh install mysql nginx nginx-php php8.1 redis
+cd webox-alpine-master
+sh install mysql nginx nginx-php php8.5 redis
 ```
 
 ## 管理
@@ -35,13 +35,13 @@ sh install mysql nginx nginx-php php8.1 redis
 # 启动
 wkit mysql start
 wkit redis start
-wkit php81 start
+wkit php85 start
 wkit nginx start
 
 # 停止
 wkit mysql stop
 wkit redis stop
-wkit php81 stop
+wkit php85 stop
 wkit nginx stop
 
 # 重载
